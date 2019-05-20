@@ -1,0 +1,56 @@
+package clients;
+
+import java.util.Random;
+import java.util.concurrent.CopyOnWriteArrayList;
+
+import masters.Master;
+import tasks.ITask;
+import tasks.OrderTask;
+import tasks.ProductTask;
+import tasks.TaskResult;
+import workers.ProductWorker;
+
+public class ProductClient implements IClient {
+	
+	private Master master = new Master(new ProductWorker(),5);
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		request();
+	}
+
+	@Override
+	public void request() {
+		// TODO Auto-generated method stub
+		for (int i = 1; i <= 5; i++) {
+			ITask t1 = new ProductTask();
+			((ProductTask) t1).setId(i);
+			((ProductTask) t1).setPrice(new Random().nextInt(1000));
+			master.submitTask(t1);
+
+		}
+		master.execute();
+		double sum = (double) reponse();
+		Thread.currentThread().setName("=====>>>Product Client "+ (int)Thread.currentThread().getId());
+		System.out.println(Thread.currentThread().getName() +"  Total product price: " + sum);
+	}
+
+	@Override
+	public Object reponse() {
+		// TODO Auto-generated method stub
+		double sum= 0;
+	    while(true){
+				if(master.isCompleted()){
+					CopyOnWriteArrayList<TaskResult> response = master.getResult();
+					for (TaskResult workerResult : response) {
+						ProductTask order = (ProductTask) workerResult.getResult();
+						sum+= order.getPrice();
+					};
+					break;
+				}
+			}
+		return sum;
+	}
+
+}

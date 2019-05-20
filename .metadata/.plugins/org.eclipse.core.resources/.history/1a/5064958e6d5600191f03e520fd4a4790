@@ -1,0 +1,77 @@
+package controller;
+
+import java.text.SimpleDateFormat;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+import clients.ClentImpl;
+import javafx.application.Platform;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import main.MainApp;
+
+public class MainAppController {
+
+	private MainApp mainApp;
+
+	@FXML private TextField oClient;
+	@FXML private TextField pClient;
+	@FXML private TextField oTask;
+	@FXML private TextField pTask;
+	@FXML private TextField oWorker;
+	@FXML private TextField pWorker;
+	@FXML private Label stime;
+	@FXML private Label ctime;
+	@FXML private Label etime;
+	
+	@FXML
+	public void calculateHandler() {
+		int oCnum= Integer.parseInt(oClient.getText());
+		//int pCnum= Integer.parseInt(pClient.getText());
+		int oTnum= Integer.parseInt(oTask.getText());
+		//int pTnum= Integer.parseInt(pTask.getText());
+		int oWnum= Integer.parseInt(oWorker.getText());
+		//int pWnum= Integer.parseInt(pWorker.getText());
+		
+	
+	
+
+	
+		ExecutorService pool=null;
+		try {  
+	
+				pool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+				
+				for (int i = 0; i < oCnum; i++) {
+					ClentImpl orderClient= new ClentImpl(oWnum,oTnum);
+				
+					pool.execute(orderClient);
+					System.out.println(orderClient.reponse()+" "+orderClient.getConsume()+"");
+					
+				}
+		         
+		       
+			 
+				
+			
+				
+
+		} finally {
+			pool.shutdown();
+		}
+		 
+	}
+
+	public void setMainApp(MainApp mainApp) {
+		// TODO Auto-generated method stub
+		this.mainApp=mainApp;
+	    Platform.runLater(() -> mainApp.getView().requestFocus());
+	}
+	private String dateFormat(long time) {
+		SimpleDateFormat dateformat = new SimpleDateFormat("HH:mm:ss");
+		return dateformat.format(time);
+	}
+
+}

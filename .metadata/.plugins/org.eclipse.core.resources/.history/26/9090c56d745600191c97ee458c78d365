@@ -1,0 +1,64 @@
+package main;
+
+import java.io.IOException;
+
+import controller.MainAppController;
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Group;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
+public class MainApp extends Application {
+
+	private  AnchorPane view;
+	
+	public AnchorPane getView() {
+		return view;
+	}
+
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		// TODO Auto-generated method stub
+		try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("/MainApp.fxml"));
+            view= loader.load();
+
+            primaryStage.setTitle("  ");
+            primaryStage.setScene(new Scene(view));
+            MainAppController controller = loader.getController();
+            controller.setMainApp(this);
+            primaryStage.show();
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
+
+	}
+
+	public static void main(String[] args) {
+		launch(args);
+	}
+	
+	
+
+}

@@ -1,0 +1,38 @@
+package tasks;
+
+public class OrderTask implements ITask {
+	private int id;
+	private double price;
+
+	public synchronized int getId() {
+		return id;
+	}
+
+	public synchronized void setId(int id) {
+		this.id = id;
+	}
+
+	public OrderTask() {
+		super();
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "Order ID: "+this.id +" Order Price: "+this.price;
+	}
+
+	public OrderTask(int id, double price) {
+		super();
+		this.id = id;
+		this.price = price;
+	}
+
+}

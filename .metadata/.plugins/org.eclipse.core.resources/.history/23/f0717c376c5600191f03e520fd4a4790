@@ -1,0 +1,38 @@
+package tasks;
+
+
+public class ProductTask implements ITask {
+
+    private int id;
+    private double price;
+
+    public ProductTask() {
+    }
+
+    public  int getId() {
+        return id;
+    }
+
+    public  void setId(int id) {
+        this.id = id;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public ProductTask(int id, double price) {
+        this.id = id;
+        this.price = price;
+    }
+    @Override
+    public String toString() {
+    	// TODO Auto-generated method stub
+    	return "Product ID: "+this.id +" Product Price: "+this.price;
+    }
+
+}

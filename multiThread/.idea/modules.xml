@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://E:/myEclipse/lab_client/lab_client.iml" filepath="E:/myEclipse/lab_client/lab_client.iml" />
+      <module fileurl="file://E:/myEclipse/lab_server/lab_server.iml" filepath="E:/myEclipse/lab_server/lab_server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/multiThread.iml" filepath="$PROJECT_DIR$/multiThread.iml" />
+    </modules>
+  </component>
+</project>

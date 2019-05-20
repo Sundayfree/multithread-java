@@ -1,0 +1,66 @@
+package clients;
+
+import java.util.List;
+import java.util.Random;
+import java.util.concurrent.CopyOnWriteArrayList;
+
+import masters.Master;
+import tasks.ITask;
+import tasks.OrderTask;
+import tasks.TaskResult;
+import workers.OrderWorker;
+
+public class OrderClient implements IClient {
+
+	private Master master;
+	private List<ITask> tasks;
+	public OrderClient(Integer workNum, int taskNum) {
+		super();
+		this.master =  new Master (new OrderWorker (), workNum);
+		for (int i = 1; i <= taskNum; i++) {
+            ITask t = new OrderTask ();
+            ((OrderTask) t).setId (i);
+
+            ((OrderTask) t).setPrice (new Random ().nextInt (1000));
+            tasks.add(t);
+        }
+	}
+	@Override
+	public void request() {
+        tasks.forEach(t->master.submitTask(t));
+        master.execute ();
+        int i =0;
+        double sum =(double) reponse();
+        System.out.println("=====>>>Order Client "+Thread.currentThread().getName()+"   Total order price: "+ sum);
+        
+	}
+	public OrderClient() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	@Override
+	public Object reponse() {
+		double sum= 0;
+	    while(true){
+				if(master.isCompleted()){
+					
+					CopyOnWriteArrayList<TaskResult> response = master.getResult();
+					for (TaskResult workerResult : response) {
+						OrderTask order = (OrderTask) workerResult.getResult();
+						sum+= order.getPrice();
+					};
+					
+					break;
+				}
+			}
+		return sum;
+		
+	}
+
+	@Override
+	public void run() {
+	
+		request();
+	}
+
+}

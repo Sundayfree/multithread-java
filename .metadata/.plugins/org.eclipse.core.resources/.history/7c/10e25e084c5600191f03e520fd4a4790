@@ -1,0 +1,14 @@
+package clients;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import masters.Master;
+import tasks.ITask;
+
+public interface IClient extends Runnable{
+	Master master =new Master();
+	List<ITask> tasks=new ArrayList<ITask>();
+    void request();
+    Object reponse();
+}

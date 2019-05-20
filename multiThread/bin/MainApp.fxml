@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="360.0" prefWidth="580.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainAppController">
+   <top>
+      <GridPane hgap="10.0" vgap="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" prefHeight="23.0" prefWidth="48.0" text="Clients:" textAlignment="CENTER" GridPane.halignment="RIGHT">
+               <font>
+                  <Font name="Book Antiqua" size="18.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </Label>
+            <TextField fx:id="work" maxWidth="60.0" promptText="num" GridPane.columnIndex="5" />
+            <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="22.0" prefWidth="92.0" text="Workers:" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.halignment="RIGHT">
+               <font>
+                  <Font name="Book Antiqua" size="18.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="22.0" prefWidth="66.0" text="Tasks:" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="RIGHT">
+               <font>
+                  <Font name="Book Antiqua" size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="task" maxWidth="60.0" promptText="num" GridPane.columnIndex="3" />
+            <TextField fx:id="client" maxWidth="60.0" promptText="num" GridPane.columnIndex="1" />
+            <Button fx:id="calBtn" mnemonicParsing="false" onAction="#calculateHandler" prefHeight="35.0" prefWidth="103.0" text="Calculate" GridPane.columnIndex="6" GridPane.halignment="CENTER">
+               <font>
+                  <Font name="Book Antiqua" size="18.0" />
+               </font>
+            </Button>
+         </children>
+         <columnConstraints>
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" percentWidth="14.0" prefWidth="229.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="298.0" minWidth="10.0" percentWidth="14.0" prefWidth="199.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="440.0" minWidth="10.0" percentWidth="10.0" prefWidth="142.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="440.0" minWidth="10.0" percentWidth="11.0" prefWidth="142.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="440.0" minWidth="10.0" percentWidth="14.0" prefWidth="142.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="440.0" minWidth="15.0" percentWidth="10.0" prefWidth="203.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="500.0" minWidth="10.0" percentWidth="20.0" prefWidth="300.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="45.0" minHeight="10.0" percentHeight="80.0" prefHeight="45.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <BorderPane.margin>
+            <Insets top="20.0" />
+         </BorderPane.margin>
+      </GridPane>
+   </top>
+</BorderPane>
